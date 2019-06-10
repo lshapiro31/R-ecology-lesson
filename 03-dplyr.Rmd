@@ -315,14 +315,22 @@ Many data analysis tasks can be approached using the *split-apply-combine*
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. **`dplyr`** makes this very easy through the use of the
 `group_by()` function.
+`group_by()` takes as arguments
+the column names that contain the **categorical** variables for which you want
+to calculate the summary statistics. 
+Grouping doesn't change how the data look, but will change how it works with other dplyr verbs.
+The tibble will print with the number of groups in that variable:
 
+```{r, purl = FALSE}
+surveys %>%
+  group_by(sex)
+```
 
 #### The `summarize()` function
 
-`group_by()` is often used together with `summarize()`, which collapses each
-group into a single-row summary of that group.  `group_by()` takes as arguments
-the column names that contain the **categorical** variables for which you want
-to calculate the summary statistics. So to compute the mean `weight` by sex:
+One of the most common dply verbs `group_by()` is often usedwith is `summarize()`,  which collapses each
+group into a single-row summary of that group. 
+So to compute the mean `weight` by sex:
 
 ```{r, purl = FALSE}
 surveys %>%
